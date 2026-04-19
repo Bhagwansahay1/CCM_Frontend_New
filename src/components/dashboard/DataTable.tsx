@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 export interface Column<T> {
   header: ReactNode;
   key: keyof T | string;
-  render?: (value: any, record: T) => ReactNode;
+  render?: (value: any, record: T, index: number) => ReactNode;
   className?: string;
   headerClassName?: string;
 }
@@ -51,7 +51,7 @@ export default function DataTable<T>({
                       className={`px-6 py-5 text-sm font-bold text-gray-600 ${col.className || ''}`}
                     >
                       {col.render 
-                        ? col.render((row as any)[col.key], row) 
+                        ? col.render((row as any)[col.key], row, rowIdx) 
                         : (row as any)[col.key]
                       }
                     </td>

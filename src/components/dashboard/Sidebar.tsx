@@ -41,7 +41,7 @@ export default function Sidebar() {
     { icon: <Database size={20} />, label: 'Master DB', path: '#' },
     { icon: <Briefcase size={20} />, label: 'Jobs & Status', path: '/jobs-status' },
     { icon: <Layers size={20} />, label: 'Orchestration', path: '#' },
-    { icon: <FileText size={20} />, label: 'Template', path: '#' },
+    { icon: <FileText size={20} />, label: 'Template', path: '/template' },
     { icon: <Settings size={20} />, label: 'Settings', path: '#' },
     { icon: <Database size={20} />, label: 'Reports', path: '#' },
     { icon: <Layers size={20} />, label: 'Logs', path: '#' },

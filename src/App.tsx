@@ -3,6 +3,7 @@ import Login from './Login';
 import Dashboard from './Dashboard';
 import DataListing from './DataListing';
 import JobsStatus from './JobsStatus';
+import TemplateManagement from './TemplateManagement';
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/data" element={<DataListing />} />
         <Route path="/jobs-status" element={<JobsStatus />} />
+        <Route path="/template" element={<TemplateManagement />} />
         <Route path="/" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>
