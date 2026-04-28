@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   Briefcase, 
   FileText, 
@@ -10,7 +11,8 @@ import {
   Printer,
   Cloud,
   Layers,
-  Calendar
+  Calendar,
+  ArrowRight
 } from 'lucide-react';
 import { 
   BarChart, 
@@ -43,10 +45,18 @@ const smsData = [
 ];
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('Communication');
   const [dateRange, setDateRange] = useState('23rd Dec 2025 – 22nd Jan 2026');
   const [dataType, setDataType] = useState('All Data');
   const [goldPl, setGoldPl] = useState('Gold-PL');
+
+  const platforms = [
+    { id: 'retail-credit', name: 'Retail Credit Card', jobs: 24, progress: 85, color: 'bg-blue-600', icon: <Mail size={20} /> },
+    { id: 'personal-loan', name: 'Personal Loan Promo', jobs: 12, progress: 45, color: 'bg-orange-600', icon: <MessageSquare size={20} /> },
+    { id: 'home-loan', name: 'Home Loan Awareness', jobs: 8, progress: 100, color: 'bg-green-600', icon: <Send size={20} /> },
+    { id: 'insurance', name: 'Insurance Renewal', jobs: 18, progress: 20, color: 'bg-red-600', icon: <Briefcase size={20} /> },
+  ];
 
   const summaryCards = [
     { label: 'TOTAL JOBS', value: 61, icon: <Briefcase className="text-white" />, color: 'bg-purple-500' },
@@ -118,6 +128,61 @@ export default function Dashboard() {
                 onChange={setGoldPl} 
                 variant="solid"
               />
+            </div>
+          </div>
+
+          {/* Running Campaigns Section */}
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="w-1.5 h-6 bg-orange-600 rounded-full"></div>
+                <h2 className="text-2xl font-black text-gray-800 tracking-tight">Running Campaigns</h2>
+              </div>
+              <button className="text-sm font-black text-orange-600 hover:orange-700 uppercase tracking-widest transition-all">
+                View All Campaigns
+              </button>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {platforms.map((campaign) => (
+                <div 
+                  key={campaign.id}
+                  onClick={() => navigate(`/campaign-details/${campaign.id}`)}
+                  className="group bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer relative overflow-hidden"
+                >
+                  {/* Decorative background circle */}
+                  <div className={`absolute -right-6 -top-6 w-24 h-24 ${campaign.color} opacity-5 rounded-full group-hover:scale-150 transition-transform duration-500`}></div>
+                  
+                  <div className="relative space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className={`p-3 rounded-2xl ${campaign.color} bg-opacity-10 text-${campaign.color.split('-')[1]}-600`}>
+                        {React.cloneElement(campaign.icon as React.ReactElement, { className: `text-${campaign.color.split('-')[1]}-600` })}
+                      </div>
+                      <span className="text-[10px] font-black text-gray-400 uppercase tracking-wider">{campaign.jobs} Jobs</span>
+                    </div>
+                    
+                    <div className="space-y-1">
+                      <h3 className="text-base font-black text-gray-800 tracking-tight group-hover:text-orange-600 transition-colors line-clamp-1">{campaign.name}</h3>
+                      <div className="flex items-center justify-between text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                        <span>Progress</span>
+                        <span className="text-gray-800">{campaign.progress}%</span>
+                      </div>
+                    </div>
+
+                    <div className="w-full bg-gray-50 h-1.5 rounded-full overflow-hidden">
+                      <div 
+                        className={`h-full ${campaign.color} rounded-full transition-all duration-1000 ease-out`}
+                        style={{ width: `${campaign.progress}%` }}
+                      ></div>
+                    </div>
+
+                    <div className="flex items-center text-[10px] font-black text-gray-400 uppercase tracking-widest group-hover:text-orange-600 transition-all pt-2">
+                      <span>View details</span>
+                      <ArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 

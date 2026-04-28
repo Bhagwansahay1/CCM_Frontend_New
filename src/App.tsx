@@ -4,6 +4,7 @@ import Dashboard from './Dashboard';
 import DataListing from './DataListing';
 import JobsStatus from './JobsStatus';
 import TemplateManagement from './TemplateManagement';
+import CampaignDetails from './CampaignDetails';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/data" element={<DataListing />} />
         <Route path="/jobs-status" element={<JobsStatus />} />
         <Route path="/template" element={<TemplateManagement />} />
+        <Route path="/campaign-details/:id" element={<CampaignDetails />} />
         <Route path="/" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>

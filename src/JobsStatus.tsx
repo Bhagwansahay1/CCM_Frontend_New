@@ -57,7 +57,6 @@ const errorJobs: ErrorJobRecord[] = [
 
 export default function JobsStatus() {
   const [jobTemplate, setJobTemplate] = useState('Choose a job template');
-  const [downloadJob, setDownloadJob] = useState('Select Job');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -220,6 +219,12 @@ export default function JobsStatus() {
                       onChange={setJobTemplate}
                       className="w-full"
                     />
+                    {jobTemplate !== 'Choose a job template' && (
+                      <button className="flex items-center space-x-2 text-[10px] font-black text-indigo-600 hover:text-indigo-700 tracking-widest uppercase transition-all mt-2 ml-1 group">
+                        <Download size={14} className="group-hover:translate-y-0.5 transition-transform" />
+                        <span>Download Template</span>
+                      </button>
+                    )}
                   </div>
                 </div>
 
@@ -291,42 +296,6 @@ export default function JobsStatus() {
                   <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
-            </div>
-          </section>
-
-          {/* Download a Template */}
-          <section className="bg-indigo-50 border-2 border-white rounded-[32px] p-8 shadow-sm space-y-6">
-            <div className="flex items-center space-x-4">
-              <div className="p-3 bg-indigo-600 rounded-2xl shadow-lg shadow-indigo-100">
-                <Download size={24} className="text-white" />
-              </div>
-              <div className="space-y-1">
-                <h2 className="text-2xl font-black text-gray-800 tracking-tight">Download a Template</h2>
-                <p className="text-sm font-bold text-gray-400">Select a job and download its template file</p>
-              </div>
-            </div>
-
-            <div className="flex flex-col md:flex-row items-center gap-4">
-              <div className="flex-1 w-full space-y-1.5">
-                <label className="text-[10px] font-black text-gray-400 uppercase tracking-wider ml-1">Select Job</label>
-                <Select 
-                  options={['RetailCreditCard', 'PersonalLoan', 'HomeLoan']} 
-                  value={downloadJob} 
-                  onChange={setDownloadJob}
-                  className="w-full h-[52px]"
-                />
-              </div>
-              <div className="md:pt-5 w-full md:w-auto">
-                <button className="w-full md:w-auto flex items-center justify-center space-x-3 bg-indigo-600 text-white px-10 h-[52px] rounded-2xl font-black tracking-widest uppercase hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 active:scale-95">
-                  <Download size={20} />
-                  <span>Download Template</span>
-                </button>
-              </div>
-            </div>
-
-            <div className="bg-white/80 border border-indigo-100 p-4 rounded-xl flex items-center space-x-3 text-xs font-bold text-gray-500">
-              <FileText size={16} className="text-indigo-400" />
-              <span>Download the template file for the selected job type. Fill in your data according to the template format, then use the <span className="text-indigo-600">"To Run a Job"</span> section above to upload and submit your job.</span>
             </div>
           </section>
 
