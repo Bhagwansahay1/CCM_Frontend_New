@@ -37,15 +37,11 @@ export default function Sidebar() {
   const navItems = [
     { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/dashboard' },
     { icon: <Database size={20} />, label: 'Data', path: '/data' },
-    { icon: <Layers size={20} />, label: 'Advance Data', path: '#' },
-    { icon: <Database size={20} />, label: 'Master DB', path: '#' },
-    { icon: <Briefcase size={20} />, label: 'Jobs & Status', path: '/jobs-status' },
-    { icon: <Layers size={20} />, label: 'Orchestration', path: '#' },
-    { icon: <FileText size={20} />, label: 'Template', path: '/template' },
+    { icon: <Briefcase size={20} />, label: 'Status', path: '/jobs-status' },
+    { icon: <FileText size={20} />, label: 'Templates', path: '/template' },
+    { icon: <Layers size={21} />, label: 'On Demand', path: '/on-demand' },
+    { icon: <Settings size={20} />, label: 'Config', path: '#' },
     { icon: <Settings size={20} />, label: 'Settings', path: '#' },
-    { icon: <Database size={20} />, label: 'Reports', path: '#' },
-    { icon: <Layers size={20} />, label: 'Logs', path: '#' },
-    { icon: <Settings size={20} />, label: 'Profile', path: '#' },
   ];
 
   return (
